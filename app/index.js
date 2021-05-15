@@ -5,33 +5,42 @@
 // Load application styles
 import 'scss/_index.scss';
 
-// Import Three.js
+// Imports
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 // Create the Scene
 const scene = new THREE.Scene();
 
 // Camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 5;
+camera.position.y = 7;
+camera.position.z = 15;
+
+// Lights
+const ambientLight = new THREE.AmbientLight(0x404040, 15);
+scene.add(ambientLight);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 15);
+scene.add(directionalLight);
 
 // Renderer
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({antialias: true, alpha:true});
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// Geometry
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
+// 3D Model
+const loader = new GLTFLoader();
+
+loader.load('../assets/models/futuristic_building/scene.gltf', function(gltf) {
+  scene.scale.set(0.5,0.5,0.5);
+  scene.add(gltf.scene);
+}, undefined, function(error) {
+  console.error(error);
+});
 
 // Animate
 function animate() {
   requestAnimationFrame(animate);
-
-  cube.rotation.x += 0.01;
-  cube.rotation.y += 0.01;
 
   renderer.render(scene,camera);
 }
