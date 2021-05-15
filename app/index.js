@@ -33,7 +33,7 @@ document.body.appendChild(renderer.domElement);
 // 3D Model
 const loader = new GLTFLoader();
 
-loader.load('../assets/models/futuristic_building/scene.gltf', function(gltf) {
+loader.load('../assets/models/wanderers/scene.gltf', function(gltf) {
   scene.scale.set(0.5,0.5,0.5);
   scene.add(gltf.scene);
 }, undefined, function(error) {
