@@ -1,3 +1,6 @@
+## 3D Model Source
+"Futuristic building" (https://skfb.ly/666M6) by Oleksandr Zymohliad is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
 Webpack 5 Boilerplate
 ===========
 ![npm](https://img.shields.io/npm/v/webpack?label=webpack&style=flat-square&logo=webpack)
