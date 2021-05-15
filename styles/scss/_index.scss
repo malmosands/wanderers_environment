@@ -7,7 +7,14 @@ html {
 body {
     margin: 0;
     background: black;
+    min-height: 400vh;
 }
 *, *:before, *:after {
     box-sizing: inherit;
+}
+
+// Canvas
+canvas {
+    position: fixed;
+    top: 0;
 }

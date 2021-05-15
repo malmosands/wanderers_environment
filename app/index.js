@@ -8,6 +8,8 @@ import 'scss/_index.scss';
 // Imports
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Create the Scene
 const scene = new THREE.Scene();
@@ -20,7 +22,7 @@ camera.position.z = 15;
 // Lights
 const ambientLight = new THREE.AmbientLight(0x404040, 15);
 scene.add(ambientLight);
-const directionalLight = new THREE.DirectionalLight(0xffffff, 15);
+const directionalLight = new THREE.DirectionalLight(0x404040, 55);
 scene.add(directionalLight);
 
 // Renderer
@@ -44,5 +46,20 @@ function animate() {
 
   renderer.render(scene,camera);
 }
+
+// GSAP
+gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.create({
+  trigger: "body",
+  start: "top center",
+  end: "bottom",
+  onUpdate: self => {
+    if(self.direction == 1) {
+      scene.rotation.y += 0.1;
+    } else if(self.direction == -1) {
+      scene.rotation.y += -0.1;
+    }
+  }
+});
 
 animate();
